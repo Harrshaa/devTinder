@@ -1,14 +1,16 @@
 const express = require("express");
 const app = express(); // creating the server
 
-app.use("/",(req,res)=>{
-    console.log(req.query);
-    res.send("Hello from the dashboard");
-});
+app.get("/user",(req,res,next)=>{
+    console.log("Handling the route user !!!");
+    next();
+})
+app.get("/user",(req,res,next)=>{
+    res.send("Response Hanlder 2")
 
-app.use("/hello",(req,res)=>{
-    res.send("Hello Hello Hello");
-});
+})
+
+
 app.listen(3000,()=>{
     console.log("Server is listening on port 3000 .... ")
 });
