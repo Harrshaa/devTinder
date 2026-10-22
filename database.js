@@ -1,6 +1,8 @@
 const {MongoClient}= require("mongodb");
+const config = require("./config");
 
-const url =  "mongodb+srv://sriharshamutakodoor_db_user:Rwktm5MnkDoJFIWt@cluster0.r3c0iid.mongodb.net/";
+const url = config.mongourl;
+console.log(typeof url);
 const client = new MongoClient(url);
 
 const dbName = "HelloWorld";
@@ -25,12 +27,9 @@ async function main(){
     const insertResult = await collection.insertMany([data]);
     console.log("Inserted Data => ", insertResult);
 
-
-
         // Read the data 
         const findResult = await collection.find({}).toArray();
-        console.log("Found Documents =>", findResult)
-
+        console.log("Found Documents =>", findResult);
 }
 
 main().then(console.log).catch(console.error).finally(()=> client.close());
